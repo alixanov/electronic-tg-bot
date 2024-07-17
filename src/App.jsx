@@ -50,8 +50,8 @@ const App = () => {
   const onCheckOut = () => {
     telegram.MainButton.text = "Купить";
     telegram.MainButton.color = "#FFFFFF"; // Цвет текста
-    telegram.MainButton.bgColor = "#4CAF50"; // Цвет фона
-    telegram.MainButton.setTextColor("#FFFFFF"); // Установка цвета текста (альтернативный метод)
+    telegram.MainButton.bgColor = "#3a1c70"; // Цвет фона
+    telegram.MainButton.setTextColor("#3a1c70"); // Установка цвета текста (альтернативный метод)
     telegram.MainButton.setBackgroundColor("#4CAF50"); // Установка цвета фона (альтернативный метод)
     telegram.MainButton.show();
   };
