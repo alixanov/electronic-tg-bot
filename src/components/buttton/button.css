@@ -1,0 +1,52 @@
+:root {
+     --primary-color:#e0c521
+}
+.btn {
+     padding: 1rem .8rem;
+     font-size: 20px;
+     text-align: center;
+     border: none;
+     outline: none;
+     border-radius: 10px;
+     width: 120px;
+box-shadow: 0 3px 7px 0 rgba(0, 0, 0, .13), 0 1px 2px 0 rgba(0, 0, 0, .11);     cursor: pointer;
+     transition: all 0.4s ease;
+     color: #222222;
+          font-style: 16px;
+          font-weight: 700;
+
+}
+.btn.add {
+     background-color: var(--primary-color);
+}
+.btn.add:hover {
+     background-color: #cab320;
+}
+.btn.add:active {
+     background-color: #ad9a1a;
+}
+.btn.remove {
+     background-color: tomato;
+}
+.btn.btn.remove:hover {
+background-color: rgb(209, 83, 61);
+}
+.btn.btn.remove:active{
+     background-color: rgb(185, 72, 54);
+}
+.btn.checkout {
+     background-color: #40ff66c6;
+     color: white;
+     font-style: 16px;
+     
+}
+.btn.btn.checkout:hover {
+     background-color: #47bb78;
+}
+
+.btn.btn.checkout:active {
+     background-color: rgb(50, 152, 67);
+}
+.btn.disabled {
+     opacity: .6;
+}
