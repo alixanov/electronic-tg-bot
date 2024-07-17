@@ -4,14 +4,14 @@ import Cart from "./components/cart/Cart";
 import { getData } from "./constants/db";
 
 const courses = getData();
-const telegram = window.Telegram.WebApp
+const telegram = window.Telegram.WebApp;
 
 const App = () => {
   const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
-    telegram.ready()
-  })
+    telegram.ready();
+  }, []);
 
   const onAddItem = item => {
     const existItem = cartItems.find(c => c.id === item.id);
@@ -48,9 +48,13 @@ const App = () => {
   };
 
   const onCheckOut = () => {
-    telegram.MainButton.text = "Купить"
-    telegram.MainButton.show()
-  }
+    telegram.MainButton.text = "Купить";
+    telegram.MainButton.color = "#FFFFFF"; // Цвет текста
+    telegram.MainButton.bgColor = "#4CAF50"; // Цвет фона
+    telegram.MainButton.setTextColor("#FFFFFF"); // Установка цвета текста (альтернативный метод)
+    telegram.MainButton.setBackgroundColor("#4CAF50"); // Установка цвета фона (альтернативный метод)
+    telegram.MainButton.show();
+  };
 
   return (
     <div>
@@ -64,7 +68,6 @@ const App = () => {
               course={course}
               onAddItem={onAddItem}
               onRemoveItem={onRemoveItem}
-
             />
           ))
         }
