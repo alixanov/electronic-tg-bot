@@ -4,14 +4,14 @@ import Cart from "./components/cart/Cart";
 import { getData } from "./constants/db";
 
 const courses = getData();
-const telegram = window.Telegram.WebApp
+const telegram = window.Telegram.WebApp;
 
 const App = () => {
   const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
-    telegram.ready()
-  })
+    telegram.ready();
+  }, []);
 
   const onAddItem = item => {
     const existItem = cartItems.find(c => c.id === item.id);
@@ -48,34 +48,30 @@ const App = () => {
   };
 
   const onCheckOut = () => {
-    telegram.MainButton.text = "Купить"
-    telegram.MainButton.show()
-  }
+    telegram.MainButton.text = "Купить";
+    telegram.MainButton.show();
+  };
+
   const onSendData = useCallback(() => {
-    const queryId = telegram.initDataUnsave?.query_id
+    const queryId = telegram.initDataUnsafe?.query_id;
 
     if (queryId) {
-      fetch("https//localhost:8000/web-app", {
+      fetch("https://localhost:8000/web-app", {
         method: "POST",
         headers: {
-          "Content-type":"applacation/json"
-        }
-  })
-} else {
-  telegram.sendData(JSON.stringify(cartItems));
-
-}
-
-
-
-    
+          "Content-type": "application/json"
+        },
+        body: JSON.stringify({ products: cartItems, queryId: queryId })
+      });
+    } else {
+      telegram.sendData(JSON.stringify(cartItems));
+    }
   }, [cartItems]);
 
   useEffect(() => {
     telegram.onEvent("mainButtonClicked", onSendData);
     return () => telegram.offEvent("mainButtonClicked", onSendData);
   }, [onSendData]);
-
 
   return (
     <div>
@@ -89,7 +85,6 @@ const App = () => {
               course={course}
               onAddItem={onAddItem}
               onRemoveItem={onRemoveItem}
-
             />
           ))
         }
